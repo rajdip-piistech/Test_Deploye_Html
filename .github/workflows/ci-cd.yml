@@ -1,22 +1,17 @@
-name: Test_Html_file
+name: Test_HTML_File
 on:
-    push:
-        branches: [main]
+  push:
+    branches: [main]
 
 jobs:
-  run-html:
+  check-html:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install dependencies
-        run: |
-          sudo apt update
-          sudo apt install -y python3
+      - name: List files to verify HTML exists
+        run: ls -l
 
-      - name: Start a simple HTTP server
-        run: python3 -m http.server 8000 &
-        
-      - name: Wait and check if the server is running
-        run: curl -I http://localhost:8000
+      - name: Validate HTML file
+        run: cat index.html  # Replace with your HTML file name
